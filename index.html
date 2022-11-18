@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+
+  <!-- ESTE ES UN CHALLENGE PARA NEXO SOLUCIONES -->
+
+
+<html lang="es">
+
+
+<head>
+
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CHALLENGE API NASA ROVERS</title>
+
+      <link rel="stylesheet" type="text/css" href="style/roverstyle.css">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+
+  <div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    
+
+    <!-- Right navbar links -->
+    
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="dist/img/matias_romano.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="index.html" class="d-block">MATIAS ROMANO</a>
+        </div>
+      </div>
+
+      
+
+    <!-- /.sidebar -->
+  </aside>
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">CHALLENGE NEXO SOLUCIONES</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              
+              
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">VER FOTOS DE NASA API</h5>
+
+                <p class="card-text">
+                  Utilizando los recursos de la NASA podemos visualizar imagenes obtenidas por los Rovers: Curiosity, Opportunity y Spirit.
+                </p>
+
+              
+                <div class="form-group" align="center" style="background-color: rgb(212, 212, 212);">
+                  
+                <!-- MENU PARA SELECCIONAR EL ROVER Y LA CAMARA PARA VISUALIZAR LAS IMAGENES -->
+                <select name="provincia" id="provincia" onchange="cargarCamaras(this.value);">
+                  <option value="cargar_provincias()">Seleccione un Rover...</option>
+                </select>
+
+                <select name="pueblo" id="pueblo"></select>
+                   <option value="">Seleccione un Rover y una Cámara...</option>
+                </select>
+
+                <!-- MENU PARA SELECCIONAR LA FECHA DE LAS IMAGENES SEGUN DIA DE LA TIERRA -->
+                  <p class="lead text-muted text-center">Ingresa el Día de la Tierra :</p><input id="fecha_tierra" class="form-control" required=required type="date" placeholder="Ingresa la fecha" style="width:300px;">
+              <button class="btn btn-primary btn-sm" onclick="getpic()">Search</button>
+            
+                <!-- MENU PARA SELECCIONAR LA FECHA DE LAS IMAGENES SEGUN DIA SOLAR -->
+              <p class="lead text-muted text-center">Ingresa el Día del Sol :</p><input id="sol" class="form-control" required=required type="number" placeholder="Ingresa dia solar" style="width:300px;">
+              <button class="btn btn-primary btn-sm" onclick="getpicsol()">Search</button>
+            
+            
+            </div>         
+             
+
+              <div class="div1" id="contenedor" style="justify-content:center;width: 100%;height:fit-content;display: flex;flex-direction: row;flex-wrap: wrap;">
+
+                <div id="caja" display="">
+                  <h3 id="titulo" class="pt-5 text-center"></h3>
+                  <p id="fecha" class="text-center"></p>
+                  <p id="descripcion" class="lead pt-5"></p>        
+                  <div id="foto_del_dia">
+              </div>
+
+              </div>               
+              </div>
+            </div>
+
+           <!-- /.card -->
+          </div>
+
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      
+    </div>
+    <!-- Default to the left -->
+    
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+
+
+<script src="scripts/imagen_del_dia.js"></script> 
+<script src="scripts/rover.js"></script>
+<script src="scripts/cargar_camaras.js"></script>
+
+
+
+</body>
+</html>
